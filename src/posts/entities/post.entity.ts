@@ -1,9 +1,12 @@
+import { MetaOptions } from 'src/meta-options/meta-options.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm';
 
 @Entity('posts')
@@ -99,6 +102,10 @@ export class Post {
     default: false,
   })
   isFeatured: boolean;
+
+  @OneToOne(() => MetaOptions, { nullable: true })
+  @JoinColumn()
+  metaValue?: MetaOptions;
 
   @CreateDateColumn()
   createdAt: Date;

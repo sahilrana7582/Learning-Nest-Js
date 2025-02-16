@@ -3,9 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
-import { User } from './user/entities/user.entity';
 import { PostsModule } from './posts/posts.module';
-import { Post } from './posts/entities/post.entity';
+import { MetaOptionsModule } from './meta-options/meta-options.module';
 
 @Module({
   imports: [
@@ -17,12 +16,14 @@ import { Post } from './posts/entities/post.entity';
         username: 'postgres',
         password: '1234',
         database: 'blog',
-        entities: [User, Post],
+        // entities: [User, Post],
+        autoLoadEntities: true,
         synchronize: true,
       }),
     }),
     UserModule,
     PostsModule,
+    MetaOptionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
