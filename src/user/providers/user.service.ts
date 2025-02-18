@@ -16,7 +16,10 @@ export class UserService {
   }
 
   async findOne(id: number): Promise<User | null> {
-    return this.usersRepository.findOneBy({ id });
+    return this.usersRepository.findOne({
+      where: { id },
+      relations: ['posts'],
+    });
   }
 
   async create(user: User): Promise<User> {

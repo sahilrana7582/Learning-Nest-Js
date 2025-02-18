@@ -1,0 +1,5 @@
+
+
+
+GET http://localhost:3000/posts/?startDate=2024-01-01&endDate=2024-01-31&limit=10&page=1
+Content-Type: application/json

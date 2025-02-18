@@ -1,4 +1,5 @@
 import { MetaOptions } from 'src/meta-options/meta-options.entity';
+import { User } from 'src/user/entities/user.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -6,7 +7,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToOne,
-  JoinColumn,
+  ManyToOne,
 } from 'typeorm';
 
 @Entity('posts')
@@ -33,7 +34,8 @@ export class Post {
     length: 255,
     nullable: false,
   })
-  author: string;
+  @ManyToOne(() => User, (author) => author.posts)
+  author: User;
 
   @Column({
     type: 'varchar',
@@ -103,10 +105,12 @@ export class Post {
   })
   isFeatured: boolean;
 
-  @OneToOne(() => MetaOptions, { nullable: true })
-  @JoinColumn()
+  @OneToOne(() => MetaOptions, (metaValue) => metaValue.post, {
+    nullable: true,
+    cascade: true,
+    eager: true,
+  })
   metaValue?: MetaOptions;
-
   @CreateDateColumn()
   createdAt: Date;
 
