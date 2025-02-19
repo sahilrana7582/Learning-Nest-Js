@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { PostsModule } from './posts/posts.module';
 import { MetaOptionsModule } from './meta-options/meta-options.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { MetaOptionsModule } from './meta-options/meta-options.module';
     UserModule,
     PostsModule,
     MetaOptionsModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
